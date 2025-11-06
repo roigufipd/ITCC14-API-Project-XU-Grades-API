@@ -1,10 +1,8 @@
 ## Project Milestones (XU Grades API)
-## Members
 
-1. [Jose Rizal](https://github.com/jrizal)
-2. [Juan Luna](https://github.com/Juanluna10)
-3. [Juan Dela Cruz](https://github.com/sadmann7)
-4. [Jose Antonio Luna](https://github.com/JamesNK)
+## Team Members
+1. [Evan Daniel F. Simbajon](https://github.com/eS1m)
+
 
 ### Milestone 1 (Nov Week 1): API Discussions
 
