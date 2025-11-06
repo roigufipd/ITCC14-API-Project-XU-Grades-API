@@ -2,7 +2,7 @@
 
 ## Team Members
 1. [Evan Daniel F. Simbajon](https://github.com/eS1m)
-
+2. [Khrystian Dominic B. Awatin](https://github.com/roigufipd)
 
 ### Milestone 1 (Nov Week 1): API Discussions
 
