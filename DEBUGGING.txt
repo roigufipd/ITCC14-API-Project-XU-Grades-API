@@ -1,0 +1,6 @@
+PURELY FOR DEBUGGING / EXTRA HINT PURPOSES
+
+###For tracking the first logo (W1:H1): 6732:1725
+Input in either W2 or H2 to get its equivalent ratio###
+
+https://andrew.hedges.name/experiments/aspect_ratio/
