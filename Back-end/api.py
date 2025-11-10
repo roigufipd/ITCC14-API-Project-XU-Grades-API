@@ -1,9 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_folder='../Front-end',
+            template_folder='../Front-end'
+            )
 CORS(app) # This will enable CORS for all routes and origins
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
@@ -336,7 +339,12 @@ api.add_resource(Grade, '/api/students/<int:student_id>/semesters/<int:semester_
 
 @app.route('/')
 def home():
-    return '<h1>Student API made by Evan Daniel Simbajon</h1>'
+    return render_template('index.html',
+                           css_file=url_for('static', filename='styles.css'),
+                           js_file=url_for('static', filename='script.js'),
+                           logo_img=url_for('static', filename='img/XU_Logotype_Color.png'),
+                           alt_logo_img=url_for('static', filename='img/XU_Logo_2.png')
+                           )
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

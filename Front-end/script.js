@@ -1,9 +1,6 @@
 const viewportWidthDisplay = document.querySelector('.tester');
 const logoImage = document.querySelector('.logo');
 
-const originalLogoSrc = 'img/XU_Logotype_Color.png';
-const alternateLogoSrc = 'img/XU_Logo_2.png'; // Assuming the new logo is in the img folder
-
 function displayViewportWidth() {
     if (!viewportWidthDisplay) return;
     const width = window.innerWidth;
@@ -12,6 +9,9 @@ function displayViewportWidth() {
 
 function swapLogoOnResize() {
     if (!logoImage) return;
+
+    const originalLogoSrc = logoImage.dataset.originalLogo;
+    const alternateLogoSrc = logoImage.dataset.alternateLogo;
 
     if (window.innerWidth < 500) {
         logoImage.src = alternateLogoSrc;

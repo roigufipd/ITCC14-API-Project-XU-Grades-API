@@ -6,18 +6,22 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="{{ css_file }}">
     </head>
     <body>
         <div class="title">
-            <img class="logo" src="img/XU_Logotype_Color.png" alt="Xavier University Logo">
+            <img class="logo" 
+                 src="{{ logo_img }}" 
+                 data-original-logo="{{ logo_img }}"
+                 data-alternate-logo="{{ alt_logo_img }}"
+                 alt="Xavier University Logo">
         </div>
+        <h1 class="tester">one</h1>
         <div class="page-body">
             <div class="api-container">
-                <h1 class="tester">one</h1>
             </div>
         </div>
         
-        <script src="script.js" async defer></script>
+        <script src="{{ js_file }}" async defer></script>
     </body>
 </html>
