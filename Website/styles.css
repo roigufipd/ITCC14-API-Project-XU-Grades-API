@@ -45,13 +45,13 @@ body {
 
 .tester {
     color: white;
-    font-size: 1.2rem; /* Added a font size to make it look nice */
+    font-size: 1.2rem;
 }
 
-/* For medium screens like tablets */
+
 @media screen and (max-width: 1325px) {
     .api-container {
-        width: 80%; /* Make the container wider on smaller screens */
+        width: 80%;
     }
 }
 
@@ -64,14 +64,14 @@ body {
     }
 
     .logo {
-        max-width: 90%; /* Make logo smaller on mobile screens */
+        max-width: 90%;
     }
 
 }
 
-/* For very small screens when the alternate logo is active */
+
 @media screen and (max-width: 500px) {
     .logo.logo-alternate {
-        max-width: 100%; /* Make the alternate logo slightly bigger */
+        max-width: 100%;
     }
 }
