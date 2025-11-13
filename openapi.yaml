@@ -1,0 +1,485 @@
+openapi: 3.0.3
+info:
+  title: Grades API
+  version: 1.0.0
+  description: Grades API for school use
+
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+
+paths:
+  /api/students/:
+    get:
+      summary: Get all students
+      tags: [Students]
+      responses:
+        '200':
+          description: List of all students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+    post:
+      summary: Create a new student
+      tags: [Students]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentCreate'
+      responses:
+        '201':
+          description: Student created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+
+  /api/students/{id}:
+    get:
+      summary: Get a specific student
+      tags: [Students]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Student details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+        '404':
+          description: Student not found
+    patch:
+      summary: Update student details
+      tags: [Students]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentUpdate'
+      responses:
+        '200':
+          description: Updated student record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+    delete:
+      summary: Delete a student
+      tags: [Students]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Student deleted successfully
+
+  /api/students/{student_id}/semesters/:
+    get:
+      summary: Get all semesters for a student
+      tags: [Semesters]
+      parameters:
+        - in: path
+          name: student_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: List of semesters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Semester'
+    post:
+      summary: Create a new semester for a student
+      tags: [Semesters]
+      parameters:
+        - in: path
+          name: student_id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SemesterCreate'
+      responses:
+        '201':
+          description: Semester created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Semester'
+
+  /api/students/{student_id}/semesters/{semester_id}:
+    patch:
+      summary: Update a semester
+      tags: [Semesters]
+      parameters:
+        - in: path
+          name: student_id
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: semester_id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SemesterUpdate'
+      responses:
+        '200':
+          description: Updated semester
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Semester'
+
+  /api/students/{student_id}/semesters/{semester_id}/classes/:
+    get:
+      summary: Get all classes for a semester
+      tags: [Classes]
+      parameters:
+        - in: path
+          name: student_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: semester_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of classes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Class'
+    post:
+      summary: Create a new class in a semester
+      tags: [Classes]
+      parameters:
+        - in: path
+          name: student_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: semester_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClassCreate'
+      responses:
+        '201':
+          description: Class created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+
+  /api/students/{student_id}/semesters/{semester_id}/classes/{class_id}:
+    patch:
+      summary: Update class details
+      tags: [Classes]
+      parameters:
+        - in: path
+          name: student_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: semester_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: class_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClassUpdate'
+      responses:
+        '200':
+          description: Updated class
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+
+  /api/students/{student_id}/semesters/{semester_id}/classes/{class_id}/grades/:
+    get:
+      summary: Get all grades for a class
+      tags: [Grades]
+      parameters:
+        - in: path
+          name: student_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: semester_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: class_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of grades
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Grade'
+    post:
+      summary: Add a grade to a class
+      tags: [Grades]
+      parameters:
+        - in: path
+          name: student_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: semester_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: class_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GradeCreate'
+      responses:
+        '201':
+          description: Grade created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Grade'
+
+  /api/students/{student_id}/semesters/{semester_id}/classes/{class_id}/grades/{grade_id}:
+    patch:
+      summary: Update a grade
+      tags: [Grades]
+      parameters:
+        - in: path
+          name: student_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: semester_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: class_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: grade_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GradeUpdate'
+      responses:
+        '200':
+          description: Updated grade
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Grade'
+
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        student_id:
+          type: integer
+        student_name:
+          type: string
+        enrollment_status:
+          type: string
+        course:
+          type: string
+        year:
+          type: integer
+        semesters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Semester'
+    StudentCreate:
+      type: object
+      required: [student_name, enrollment_status, course, year]
+      properties:
+        student_name:
+          type: string
+        enrollment_status:
+          type: string
+        course:
+          type: string
+        year:
+          type: integer
+    StudentUpdate:
+      type: object
+      properties:
+        student_name:
+          type: string
+        enrollment_status:
+          type: string
+        course:
+          type: string
+        year:
+          type: integer
+
+    Semester:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        classes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Class'
+    SemesterCreate:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    SemesterUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+
+    Class:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        grades:
+          type: array
+          items:
+            $ref: '#/components/schemas/Grade'
+    ClassCreate:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    ClassUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+
+    Grade:
+      type: object
+      properties:
+        id:
+          type: integer
+        midterm_grade:
+          type: integer
+        final_grade:
+          type: integer
+        description:
+          type: string
+    GradeCreate:
+      type: object
+      properties:
+        midterm_grade:
+          type: integer
+        final_grade:
+          type: integer
+        description:
+          type: string
+    GradeUpdate:
+      type: object
+      properties:
+        midterm_grade:
+          type: integer
+        final_grade:
+          type: integer
+        description:
+          type: string
+
+
