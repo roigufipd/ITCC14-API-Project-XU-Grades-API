@@ -290,9 +290,6 @@ class GradeList(Resource):
         if not target_class:
             abort(404, f"Class with id {class_id} not found in this path")
 
-        # This query is now ambiguous because class_id is not globally unique.
-        # We need to use the full path to identify the parent.
-        # The logic for calculating the new ID is correct, however.
         max_id = db.session.query(db.func.max(GradeModel.id)).filter_by(class_id=class_id, semester_id=target_class.semester_id, student_id=target_class.student_id).scalar() or 0
         new_id = max_id + 1
 
