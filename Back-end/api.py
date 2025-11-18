@@ -326,13 +326,13 @@ class Grade(Resource):
         return grade
 
 api.add_resource(Students, '/api/students/semester/classes/grades/', '/api/students/')
-api.add_resource(Student, '/api/students/<int:id>')
-api.add_resource(SemesterList, '/api/students/<int:student_id>/semesters/')
-api.add_resource(Semester, '/api/students/<int:student_id>/semesters/<int:semester_id>')
-api.add_resource(ClassList, '/api/students/<int:student_id>/semesters/<int:semester_id>/classes/')
-api.add_resource(Class, '/api/students/<int:student_id>/semesters/<int:semester_id>/classes/<int:class_id>')
-api.add_resource(GradeList, '/api/students/<int:student_id>/semesters/<int:semester_id>/classes/<int:class_id>/grades/')
-api.add_resource(Grade, '/api/students/<int:student_id>/semesters/<int:semester_id>/classes/<int:class_id>/grades/<int:grade_id>')
+api.add_resource(Student, '/api/students/<int:id>') // Displays the Student ID associated with the students
+api.add_resource(SemesterList, '/api/students/<int:student_id>/semesters/') // Displays the Semesters
+api.add_resource(Semester, '/api/students/<int:student_id>/semesters/<int:semester_id>') // Displays each Semester that the Student takes
+api.add_resource(ClassList, '/api/students/<int:student_id>/semesters/<int:semester_id>/classes/') // Displays the Classes under Semesters
+api.add_resource(Class, '/api/students/<int:student_id>/semesters/<int:semester_id>/classes/<int:class_id>') // Displays each Class
+api.add_resource(GradeList, '/api/students/<int:student_id>/semesters/<int:semester_id>/classes/<int:class_id>/grades/') // Displays the grades
+api.add_resource(Grade, '/api/students/<int:student_id>/semesters/<int:semester_id>/classes/<int:class_id>/grades/<int:grade_id>') // Displays grades of each student
 
 @app.route('/')
 def home():
