@@ -58,7 +58,7 @@
   - Creation of `index.html`, `styles.css` and `scripts.js` for functionality.
 - **Checklist:**
   - [x] XU API Page
-  - [ ] Integration of API through initial testing
+  - [x] Integration of API through initial testing
 
 ### Milestone 5 (Dec Week 1): Full Front-End Integration with Full Documentation
 
@@ -71,8 +71,8 @@
   - Getting a student's grade based on the endpoints specified. (`/students`, `/semester`, `/classes` and etc.)
 - **Checklist:**
   - [ ] Finished Documentation
-  - [ ] Completed mock website
-  - [ ] Full read of a student's grade
+  - [x] Completed mock website
+  - [x] Full read of a student's grade
 
 ### Final (Dec Week 2): Full Demo & Presentation
 
@@ -82,8 +82,6 @@
   - Share repository link and quickstart steps.
 - **Deliverables:**
   - Slide or short doc with key points.
-  - Live demo script (steps you’ll follow during presentation).
 - **Checklist:**
-  - [ ] Slides ready
-  - [ ] Demo data seeded
-  - [ ] Backup plan (screenshots/videos) prepared
+  - [ ] Demo data added (At least 3)
+  - [ ] Extra data prepared (At least 1)
